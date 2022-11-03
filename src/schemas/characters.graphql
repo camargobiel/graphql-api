@@ -1,8 +1,16 @@
+type Query {
+  characters: [Character]
+}
+
 type Character {
   name: String
   gender: String
+  status: String
+  type: String
+  origin: Origin
 }
 
-type Query {
-  characters: [Character]
+type Origin {
+  name: String
+  url: String
 }
