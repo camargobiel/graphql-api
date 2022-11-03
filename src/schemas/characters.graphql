@@ -1,0 +1,8 @@
+type Character {
+  name: String
+  gender: String
+}
+
+type Query {
+  characters: [Character]
+}
