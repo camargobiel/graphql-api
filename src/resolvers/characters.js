@@ -1,11 +1,10 @@
-const { get } = require('../api/characters.js')
-
-let data = []
-get().then((response) => { data = response })
+const { getAllCharacters } = require('../api/characters-api.js')
 
 const resolvers = {
   Query: {
-    characters: () => data.characters
+    characters: async _ => {
+      return await getAllCharacters()
+    }
   }
 }
 

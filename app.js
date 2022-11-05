@@ -5,12 +5,13 @@ const { ApolloServer } = require('apollo-server-express')
 
 const resolvers = require('./src/resolvers/characters.js')
 const express = require('express')
+require('dotenv').config()
 
 const typeDefs = loadSchemaSync('./src/schemas/characters.graphql', {
   loaders: [new GraphQLFileLoader()]
 })
 
-const PORT = 3000
+const app = express()
 
 const startServer = async () => {
   const server = new ApolloServer({
@@ -18,23 +19,15 @@ const startServer = async () => {
     resolvers
   })
 
-  const app = express()
-
   await server.start()
 
   server.applyMiddleware({ app })
 
-  app.get('/rest', (req, res) => {
-    res.json({
-      data: 'API is working...'
-    })
-  })
-
-  app.listen(PORT, () => {
-    console.log(`🚀  Server ready at: ${PORT}`)
+  app.listen(process.env.PORT, () => {
+    console.log(`🚀  Server ready at: http://localhost:${process.env.PORT}/graphql`)
   })
 }
 
 startServer()
 
-/* module.exports = { server, typeDefs } */
+module.exports = { app }
