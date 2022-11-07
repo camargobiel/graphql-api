@@ -1,7 +1,7 @@
 type Query {
   characters: [Character]
 
-  character(id: Int): [Character]
+  character(id: Int): Character
 }
 
 type Character {

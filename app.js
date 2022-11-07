@@ -16,7 +16,8 @@ const app = express()
 const startServer = async () => {
   const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
+    formatError: _ => 200
   })
 
   await server.start()
