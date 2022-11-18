@@ -3,11 +3,11 @@ const { GraphQLFileLoader } = require('@graphql-tools/graphql-file-loader')
 
 const { ApolloServer } = require('apollo-server-express')
 
-const resolvers = require('./src/resolvers/characters.js')
+const resolvers = require('./src/resolvers/users.js')
 const express = require('express')
 require('dotenv').config()
 
-const typeDefs = loadSchemaSync('./src/schemas/characters.graphql', {
+const typeDefs = loadSchemaSync('./src/schemas/users.graphql', {
   loaders: [new GraphQLFileLoader()]
 })
 
