@@ -7,7 +7,7 @@ const resolvers = require('./src/resolvers/users.js')
 const express = require('express')
 require('dotenv').config()
 
-const typeDefs = loadSchemaSync('./src/schemas/users.graphql', {
+const typeDefs = loadSchemaSync('./src/schemas/*.graphql', {
   loaders: [new GraphQLFileLoader()]
 })
 

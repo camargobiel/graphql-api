@@ -5,6 +5,7 @@ exports.up = (knex) => {
     table.increments()
     table.string('name').notNullable()
     table.string('email').notNullable()
+    table.string('password').notNullable()
   })
 }
 
