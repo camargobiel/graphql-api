@@ -11,11 +11,9 @@
     "migrate-db": "npm run reset-db && knex migrate:latest --env development",
     "seed-db": "npm run migrate-db && knex seed:run",
     "test": "npm run seed-db && jest ./tests/*.spec.js --detectOpenHandles --forceExit",
-    "create-seed": "knex seed:make"
+    "create-seed": "knex seed:make",
+    "prepare": "husky install"
   },
-  "pre-commit": [
-    "test"
-  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -34,6 +32,8 @@
     "pg": "^8.8.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
     "@graphql-tools/graphql-file-loader": "^7.5.7",
     "@graphql-tools/load": "^7.8.2",
     "@graphql-tools/schema": "^9.0.6",
@@ -47,6 +47,7 @@
     "eslint-plugin-n": "^15.4.0",
     "eslint-plugin-promise": "^6.1.1",
     "graphql-tools": "^8.3.8",
+    "husky": "^8.0.0",
     "jest": "^29.2.2",
     "nodemon": "^2.0.20",
     "pre-commit": "^1.2.2",
