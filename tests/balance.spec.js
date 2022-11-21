@@ -8,7 +8,7 @@ describe('Mutations', () => {
         .post('/graphql')
         .send({
           query: `mutation {
-            AddBalance(input: ${50}) {
+            addBalance(input: ${50}) {
               id
               userId
               currentBalance
@@ -18,7 +18,7 @@ describe('Mutations', () => {
         .set('Accept', 'application/json')
         .expect(200)
 
-      expect(response.body.data.AddBalance).toStrictEqual({
+      expect(response.body.data.addBalance).toStrictEqual({
         id: '1',
         userId: null,
         currentBalance: 50

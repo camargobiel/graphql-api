@@ -2,7 +2,7 @@ const db = require('../database/db.js')
 
 const resolvers = {
   Mutation: {
-    AddBalance: async (_, { input }) => {
+    addBalance: async (_, { input }) => {
       const [response] = await db('balance')
         .insert({ current_balance: input })
         .returning('*')
