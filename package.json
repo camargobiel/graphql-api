@@ -10,7 +10,7 @@
     "reset-db": "knex migrate:rollback --all",
     "migrate-db": "npm run reset-db && knex migrate:latest --env development",
     "seed-db": "npm run migrate-db && knex seed:run",
-    "test": "npm run seed-db && jest ./tests/*.spec.js --detectOpenHandles --forceExit",
+    "test": "npm run seed-db && jest ./tests/* --detectOpenHandles --forceExit",
     "create-seed": "knex seed:make",
     "prepare": "husky install"
   },
