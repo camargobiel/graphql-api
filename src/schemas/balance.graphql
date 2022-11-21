@@ -1,0 +1,9 @@
+type Mutation {
+  AddBalance(input: Float): Balance!
+}
+
+type Balance {
+  id: String
+  userId: Int
+  currentBalance: Float
+}

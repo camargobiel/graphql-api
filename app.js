@@ -1,15 +1,19 @@
-const { loadSchemaSync } = require('@graphql-tools/load')
-const { GraphQLFileLoader } = require('@graphql-tools/graphql-file-loader')
+const path = require('path')
+
+const { loadFilesSync } = require('@graphql-tools/load-files')
+const { mergeResolvers } = require('@graphql-tools/merge')
+const { mergeTypeDefs } = require('@graphql-tools/merge')
 
 const { ApolloServer } = require('apollo-server-express')
 
-const resolvers = require('./src/resolvers/users.js')
 const express = require('express')
 require('dotenv').config()
 
-const typeDefs = loadSchemaSync('./src/schemas/*.graphql', {
-  loaders: [new GraphQLFileLoader()]
-})
+const typesArray = loadFilesSync(path.join(__dirname, './src/schemas/*.graphql'))
+const typeDefs = mergeTypeDefs(typesArray)
+
+const resolverFiles = loadFilesSync(path.join(__dirname, './src/resolvers/*.js'))
+const resolvers = mergeResolvers(resolverFiles)
 
 const app = express()
 
@@ -24,9 +28,11 @@ const startServer = async () => {
 
   server.applyMiddleware({ app })
 
-  app.listen(process.env.PORT, () => {
-    console.log(`🚀  Server ready at: http://localhost:${process.env.PORT}/graphql`)
-  })
+  if (!module.parent) {
+    app.listen(process.env.PORT, () => {
+      console.log(`🚀  Server ready at: http://localhost:${process.env.PORT}/graphql`)
+    })
+  }
 }
 
 startServer()
